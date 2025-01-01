@@ -1,4 +1,5 @@
 ﻿using CourseMikroservice.Shared.Extensions;
+using CourseMikroservice.Shared.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,7 +14,7 @@ namespace Catalog.API.Features.Categories.Create
                 var result = await mediator.Send(command);
                 return result.ToGenericResult();
 
-            });
+            }).AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>();
 
             return group;
         }

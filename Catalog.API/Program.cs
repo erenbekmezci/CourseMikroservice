@@ -1,5 +1,6 @@
 using Catalog.API;
 using Catalog.API.Features.Categories;
+using Catalog.API.Features.Courses;
 using Catalog.API.Options;
 using Catalog.API.Repositories;
 using CourseMikroservice.Shared.Extensions;
@@ -21,6 +22,7 @@ builder.Services.AddCommonServiceExt(typeof(CatelogAssembly));
 var app = builder.Build();
 
 app.AddCategoryGroupExt();
+app.AddCourseEndpointExt();
 
 
 

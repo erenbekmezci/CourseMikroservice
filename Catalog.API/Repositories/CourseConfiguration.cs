@@ -15,9 +15,9 @@ namespace Catalog.API.Repositories
             builder.ToCollection("courses");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedNever();
-            builder.Property(x => x.Name).HasElementName("name");
-            builder.Property(x => x.Description).HasElementName("description");
-            builder.Property(x => x.ImagePath).HasElementName("imagePath");
+            builder.Property(x => x.Name).HasElementName("name").HasMaxLength(100);
+            builder.Property(x => x.Description).HasElementName("description").HasMaxLength(1000);
+            builder.Property(x => x.ImageUrl).HasElementName("imagePath");
             builder.Property(x => x.Price).HasElementName("price");
             builder.Property(x => x.CategoryId).HasElementName("categoryId");
             builder.Property(x => x.UserId).HasElementName("userId");
