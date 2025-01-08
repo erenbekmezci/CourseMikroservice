@@ -16,13 +16,29 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddOptionsExt();
 builder.Services.AddRepositoryExt();
 
+
+builder.Services.AddVersionExt();//Add Versioning
+
 builder.Services.AddCommonServiceExt(typeof(CatelogAssembly));
 
 
 var app = builder.Build();
+app.SeedDataExt().ContinueWith(x =>
+{
+    if (x.IsFaulted)
+    {
+        Console.WriteLine(x.Exception.Message);
+    }
+    else
+    {
+        Console.WriteLine("Seed Data Completed");
+    }
 
-app.AddCategoryGroupExt();
-app.AddCourseEndpointExt();
+
+});
+
+app.AddCategoryGroupExt(app.AddVersionSetExt());
+app.AddCourseEndpointExt(app.AddVersionSetExt());
 
 
 

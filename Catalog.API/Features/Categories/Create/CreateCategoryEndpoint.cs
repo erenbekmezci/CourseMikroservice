@@ -14,7 +14,8 @@ namespace Catalog.API.Features.Categories.Create
                 var result = await mediator.Send(command);
                 return result.ToGenericResult();
 
-            }).AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>();
+            }).AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>()
+            .MapToApiVersion(1, 0);
 
             return group;
         }

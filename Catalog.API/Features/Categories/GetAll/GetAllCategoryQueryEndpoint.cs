@@ -32,7 +32,8 @@ namespace Catalog.API.Features.Categories.GetAll
             {
                 var result = await mediator.Send(new GetAllCategoryQuery());
                 return result.ToGenericResult();
-            });
+            })
+            .MapToApiVersion(1, 2);
 
             return group;
         }

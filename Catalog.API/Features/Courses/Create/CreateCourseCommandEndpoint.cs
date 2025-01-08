@@ -13,8 +13,9 @@ namespace Catalog.API.Features.Courses.Create
             group.MapPost("/", async (CreateCourseCommand request, IMediator mediator) => (await mediator.Send(request)).ToGenericResult())
                 .Produces<Guid>(StatusCodes.Status201Created)
                 .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
-                .AddEndpointFilter<ValidationFilter<CreateCourseCommand>>();
-                
+                .AddEndpointFilter<ValidationFilter<CreateCourseCommand>>()
+                .MapToApiVersion(1, 0); 
+
             return group;
         }
     }
