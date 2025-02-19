@@ -42,7 +42,6 @@ namespace Catalog.API.Repositories
                         Created = DateTime.UtcNow,
                         Feature = new Feature { Duration = 10, Rating = 0 , EducatorFullName= "Eren Bekmezci" },
                         UserId = userId
-
                     },
                     new()
                     {

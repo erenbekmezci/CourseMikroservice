@@ -17,7 +17,7 @@ builder.Services.AddOptionsExt();
 builder.Services.AddRepositoryExt();
 
 
-builder.Services.AddVersionExt();//Add Versioning
+builder.Services.AddVersioningExt();//Add Versioning
 
 builder.Services.AddCommonServiceExt(typeof(CatelogAssembly));
 

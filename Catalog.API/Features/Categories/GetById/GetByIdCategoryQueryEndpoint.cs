@@ -18,7 +18,7 @@ namespace Catalog.API.Features.Categories.GetById
             var category = await _context.Categories.FindAsync(request.Id);
             if (category == null)
             {
-                return ServiceResult<CategoryDto>.Error(title: "Category not found", statusCode: HttpStatusCode.NotFound);
+                return ServiceResult<CategoryDto>.Error(title: "Category not found", status: HttpStatusCode.NotFound);
             }
 
             var mappedCategory = _mapper.Map<CategoryDto>(category);

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Catalog.API.Repositories;
 using CourseMikroservice.Shared;
+using CourseMikroservice.Shared.Services;
 using MassTransit;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,7 @@ using MongoDB.Bson.Serialization.Conventions;
 
 namespace Catalog.API.Features.Courses.Create
 {
-    public class CreateCourseCommandHandler(AppDbContext context, IMapper mapper) : IRequestHandler<CreateCourseCommand, ServiceResult<Guid>>
+    public class CreateCourseCommandHandler(AppDbContext context, IMapper mapper , IIdentityService identityService) : IRequestHandler<CreateCourseCommand, ServiceResult<Guid>>
     {
         public async Task<ServiceResult<Guid>> Handle(CreateCourseCommand request, CancellationToken cancellationToken)
         {
@@ -33,6 +34,8 @@ namespace Catalog.API.Features.Courses.Create
 
             var mappedCourse = mapper.Map<Course>(request);
             mappedCourse.Id = NewId.NextSequentialGuid();
+            mappedCourse.UserId = identityService.GetUserId;
+
             mappedCourse.Created = DateTime.Now;
             mappedCourse.Feature = new Feature
             {
